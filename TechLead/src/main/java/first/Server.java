@@ -34,30 +34,26 @@ public class Server {
             dataInputStream = new DataInputStream(socketInputStream);
             dataOutputStream = new DataOutputStream(socketOutputStream);
 
-            String line = null;
-            //while (true) {
+            String line;
+            line = dataInputStream.readUTF(); // ожидаем пока клиент пришлет строку текста.
+            System.out.println("Клиент прислал запрос: " + line);
+            String fidBack = FileWorking.readFileFromServerRoot(line);
+            dataOutputStream.writeUTF(fidBack);
+            dataOutputStream.flush(); // заставляем поток закончить передачу данных.
+            System.out.println();
 
-                for (int j=5; j>0; j--) {
-                    line = dataInputStream.readUTF(); // ожидаем пока клиент пришлет строку текста.
-                    System.out.println("Клиент прислал запрос: " + line);
-                    String fidBack = FileWorking.readFileFromServerRoot(line);
-                    dataOutputStream.writeUTF(fidBack);
-                    dataOutputStream.flush(); // заставляем поток закончить передачу данных.
-                    System.out.printf("Осталось %d попыток", j);
-                    System.out.println();
-                }
 
         } catch (Exception x) {
             x.printStackTrace();
+        } finally {
+            socket.close();
+            socketInputStream.close();
+            socketOutputStream.close();
+            dataOutputStream.close();
         }
-        System.out.printf("Не знаю,как закрыть потоки из другого метода,поэтому пока закрываю в том же через 5 итераций");
-        socket.close();
-        socketInputStream.close();
-        socketOutputStream.close();
-        dataOutputStream.close();
     }
 
-    public static void stopServer() throws IOException {
+  /*  public static void stopServer() throws IOException {
 
         socket.close();
         socketInputStream.close();
@@ -66,4 +62,5 @@ public class Server {
 
 
     }
+    */
 }
