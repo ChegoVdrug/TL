@@ -19,25 +19,26 @@ public class FileWorking {
 
     public static String readFileFromServerRoot(String name) throws IOException {
         String result = "";
+        FileInputStream fileInputStream = null;
+        BufferedInputStream bufferedInputStream;
 
         if (isFilePresent(name, Utils.getProperty("WEB_SERVER_ROOT")) == true) {
-            FileInputStream fileInputStream = new FileInputStream(Utils.getProperty("WEB_SERVER_ROOT") + "/" + name);
-            BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
-
             try {
-                System.out.printf("File size: %d bytes \n", bufferedInputStream.available());
+                fileInputStream = new FileInputStream(Utils.getProperty("WEB_SERVER_ROOT") + "/" + name);
+                bufferedInputStream = new BufferedInputStream(fileInputStream);
+                int i;
 
-                int i = -1;
+                System.out.printf("File size: %d bytes \n", bufferedInputStream.available());
                 while ((i = bufferedInputStream.read()) != -1) {
+
                     result = result + ((char) i);
                     System.out.print((char) i);
                     System.out.printf(" ( код ASCII %d ) \n", i);
                 }
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
+            } finally {
+                if (fileInputStream != null)
+                    fileInputStream.close();
             }
-            fileInputStream.close();
-            System.out.println("result: " + result);
         } else {
             result = "Ошибка!Такого файла не существует.";
         }
