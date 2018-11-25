@@ -32,36 +32,34 @@ public class Client {
             FileReader fileReader = new FileReader("E:/Work/SERVER/requestList.txt");
             String messageToServ = "";
 
-            int c;
-            while ((c = fileReader.read()) != -1) {
-                messageToServ = messageToServ + ((char) c);
-            }
+            for (int i = 1; i <= 5; i++) {
 
-            System.out.println("Отправка запроса на сервер: нужно содержимое файла " + messageToServ);
-            try {
-                dataOutputStream.writeUTF(messageToServ); // отсылаем  строку текста серверу.
-                dataOutputStream.flush(); // заставляем поток закончить передачу данных.
-                messageToServ = dataInputStream.readUTF(); // ждем пока сервер отошлет строку текста.
-                System.out.println("Содержимое файла: \n" + messageToServ);
-                System.out.println("-------------THE_END-----------------");
-
-            } finally {
-                socket.close();
+                messageToServ = FileWorking.readLineFromFile("requestList.txt", i);
+                System.out.println("Отправка запроса на сервер: нужно содержимое файла " + messageToServ);
                 try {
-                    socketInputStream.close();  //падает здесь, если сервер уже закрыл потоки
-                    socketOutputStream.close();
-                } catch (NullPointerException x) {
-                    System.out.println("\nСервер уже всё закрыл");
-
+                    dataOutputStream.writeUTF(messageToServ); // отсылаем  строку текста серверу.
+                    dataOutputStream.flush(); // заставляем поток закончить передачу данных.
+                    messageToServ = dataInputStream.readUTF(); // ждем пока сервер отошлет строку текста.
+                    System.out.println("Содержимое файла: \n" + messageToServ);
+                    System.out.println("-------------THE_END-----------------");
+                } catch (EOFException r) {
                 }
             }
-        } catch (ConnectException e) {
-            e.printStackTrace();
-            System.out.println("\n Ошибка соединения. Сначала нужно запустить сервер");
-        }
 
+
+        } finally {
+            socket.close();
+        }
+        try {
+            socketInputStream.close();  //падает здесь, если сервер уже закрыл потоки
+            socketOutputStream.close();
+        } catch (NullPointerException x) {
+            System.out.println("\nСервер уже всё закрыл");
+
+
+        }
     }
-}
+    }
 
 /*
     public static void stopClient() throws IOException {
