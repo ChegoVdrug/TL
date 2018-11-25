@@ -33,18 +33,18 @@ public class Server {
             // Конвертируем потоки в другой тип, чтоб легче обрабатывать текстовые сообщения.
             dataInputStream = new DataInputStream(socketInputStream);
             dataOutputStream = new DataOutputStream(socketOutputStream);
-
-            String line;
-            line = dataInputStream.readUTF(); // ожидаем пока клиент пришлет строку текста.
-            System.out.println("Клиент прислал запрос: " + line);
-            String fidBack = FileWorking.readFileFromServerRoot(line);
-            dataOutputStream.writeUTF(fidBack);
+            for (int i = 0; i <= 5; i++) {
+                String line;
+                line = dataInputStream.readUTF(); // ожидаем пока клиент пришлет строку текста.
+                System.out.println("Клиент прислал запрос: " + line);
+                String fidBack = FileWorking.getTextFromFileInRoot(line);
+                dataOutputStream.writeUTF(fidBack);
+            }
             dataOutputStream.flush(); // заставляем поток закончить передачу данных.
             System.out.println();
 
 
-        } catch (Exception x) {
-            x.printStackTrace();
+
         } finally {
             socket.close();
             socketInputStream.close();
