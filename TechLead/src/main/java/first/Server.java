@@ -6,15 +6,16 @@ import java.net.Socket;
 
 public class Server {
 
-    private static int port; // случайный порт (может быть любое число от 1025 до 65535)
-    private static ServerSocket serverSocket; // создаем сокет сервера
-    private static Socket socket;
-    private static InputStream socketInputStream;
-    private static OutputStream socketOutputStream;
-    private static DataInputStream dataInputStream;
-    private static DataOutputStream dataOutputStream;
-
     public static void startServer() throws IOException {
+
+        int port; // случайный порт (может быть любое число от 1025 до 65535)
+        ServerSocket serverSocket; // создаем сокет сервера
+        Socket socket = null;
+        InputStream socketInputStream= null;
+        OutputStream socketOutputStream = null;
+        DataInputStream dataInputStream = null;
+        DataOutputStream dataOutputStream = null;
+
         port = Integer.parseInt(Utils.getProperty("port"));
 
         try {
@@ -49,6 +50,7 @@ public class Server {
             socket.close();
             socketInputStream.close();
             socketOutputStream.close();
+            dataInputStream.close();
             dataOutputStream.close();
         }
     }
