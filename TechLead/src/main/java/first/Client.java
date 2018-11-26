@@ -2,38 +2,31 @@ package first;
 
 
 import java.io.*;
-import java.net.ConnectException;
 import java.net.InetAddress;
 import java.net.Socket;
 
 public class Client {
 
-    private static int serverPort; // здесь обязательно нужно указать порт к которому привязывается сервер.
-    private static String address = "127.0.0.1"; // это IP-адрес компьютера, где исполняется наша серверная программа.
-
-    private static Socket socket; // Здесь указан адрес того самого компьютера где будет исполняться и клиент.
-
-
     public static void startClient() throws IOException {
+
+        int serverPort; //  порт к которому привязывается сервер.
+        String address = "127.0.0.1"; // это IP-адрес компьютера, где исполняется серверная программа.
+        Socket socket = null; // адрес компьютера где будет исполняться и клиент.
         InputStream socketInputStream = null;
         OutputStream socketOutputStream = null;
-        try {
 
+        try {
             serverPort = Integer.parseInt(Utils.getProperty("port"));
-            InetAddress ipAddress = InetAddress.getByName(address); // создаем объект который отображает вышеописанный IP-адрес.
-            socket = new Socket(ipAddress, serverPort); // создаем сокет используя IP-адрес и порт сервера.
+            InetAddress inetAddress = InetAddress.getByName(address); // создаем объект который отображает вышеописанный IP-адрес.
+            socket = new Socket(inetAddress, serverPort); // создаем сокет используя IP-адрес и порт сервера.
             System.out.println("add socket: " + address + ":" + serverPort);
-            // Конвертируем
-            // потоки в другой тип, чтоб легче обрабатывать текстовые сообщения.
+            // Конвертируем потоки в другой тип, чтоб легче обрабатывать текстовые сообщения.
             DataInputStream dataInputStream = new DataInputStream(socket.getInputStream()); // Берем входной и выходной потоки сокета, теперь можем получать и отсылать данные клиентом.
             DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
-
             // Создаем поток для чтения из файла
-            FileReader fileReader = new FileReader("E:/Work/SERVER/requestList.txt");
-            String messageToServ = "";
+            String messageToServ;
 
             for (int i = 1; i <= 5; i++) {
-
                 messageToServ = FileWorking.readLineFromFile("requestList.txt", i);
                 System.out.println("Отправка запроса на сервер: нужно содержимое файла " + messageToServ);
                 try {
@@ -43,23 +36,22 @@ public class Client {
                     System.out.println("Содержимое файла: \n" + messageToServ);
                     System.out.println("-------------THE_END-----------------");
                 } catch (EOFException r) {
+                    System.out.println("?????????????????????????????");
                 }
             }
 
-
         } finally {
-            socket.close();
-        }
-        try {
-            socketInputStream.close();  //падает здесь, если сервер уже закрыл потоки
-            socketOutputStream.close();
-        } catch (NullPointerException x) {
-            System.out.println("\nСервер уже всё закрыл");
+            try {
+                socket.close();
+                socketInputStream.close();  //падает здесь, если сервер уже закрыл потоки
+                socketOutputStream.close();
+            } catch (NullPointerException x) {
+                System.out.println("\nСервер уже всё закрыл");
 
-
+            }
         }
     }
-    }
+}
 
 /*
     public static void stopClient() throws IOException {
