@@ -22,11 +22,11 @@ public class EspressoCoffee implements Coffee {
     public int getCoffee() {
         return countOfCoffee;
     }
-    public int getSugar() {
-        return countOfSugar;
-    }
     public void setSugar(int sugarCount) {
         countOfSugar = sugarCount;
+    }
+    public int getSugar() {
+        return countOfSugar;
     }
     public EspressoCoffee (){
     }
@@ -56,13 +56,5 @@ public class EspressoCoffee implements Coffee {
     }
 
 
-    public void printComponentsAccrossGet() {
-        System.out.println("Espresso(GET): {");
 
-        System.out.println("Coffee "+ getCoffee());
-        System.out.println("Water "+ getWater());
-        System.out.println("Sugar "+ getSugar());
-        System.out.println("}");
-        //Распечатать в виде: 2 сахара, 3 молока
-    }
 }

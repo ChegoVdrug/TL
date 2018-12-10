@@ -12,4 +12,6 @@ public interface Coffee {
     int getCoffee();
 
 
+    int getSugar();
 }
+
