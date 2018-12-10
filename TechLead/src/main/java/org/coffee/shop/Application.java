@@ -7,23 +7,23 @@ public class Application {
 
     public static void main(String[] args) {
         CoffeeMachine machine1 = new CoffeeMachine();
-        machine1.setMilk(1);
+        //machine1.setMilk(3);
 
         CoffeeMachine machine2 = new CoffeeMachine();
-        machine2.setMilk(8);
+       // machine2.setMilk(0);
 
-        Coffee espresso = machine1.prepareCoffee(CoffeType.ESPRESSO, 3);
+        Coffee espresso = machine1.prepareCoffee(CoffeType.ESPRESSO, 2);
         espresso.printComponents();
         //Сделать и распечатать капучино
 
-        Coffee cappuccino = machine1.prepareCoffee(CoffeType.CAPPUCCINO, 1);
+        Coffee cappuccino = machine1.prepareCoffee(CoffeType.CAPPUCCINO, 4);
         cappuccino.printComponents();
 
 
-        Coffee americano = machine1.prepareCoffee(CoffeType.AMERICANO, 2);
+        Coffee americano = machine1.prepareCoffee(CoffeType.AMERICANO, 6);
         americano.printComponents();
 
-        Coffee cappuccino2 = machine2.prepareCoffee(CoffeType.CAPPUCCINO, 1);
+        Coffee cappuccino2 = machine2.prepareCoffee(CoffeType.CAPPUCCINO, 8);
         cappuccino2.printComponents();
 
 

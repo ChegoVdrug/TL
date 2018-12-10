@@ -1,7 +1,7 @@
 package org.coffee.shop.components;
 
 public interface CoffeeComponent {
-    public String toString();
+    String toString();
 //Сахар, молоко, кофе, вода
 }
 
