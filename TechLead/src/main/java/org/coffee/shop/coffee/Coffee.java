@@ -11,11 +11,6 @@ public interface Coffee {
 
     int getCoffee();
 
-
-    int getSugar();
-
     int getMilk();
-
-    void setSugar(int sugarCount);
 }
 

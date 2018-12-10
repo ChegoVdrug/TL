@@ -12,7 +12,6 @@ public class AmericanoCoffee implements Coffee {
     private static int countOfWater = 5;
     private static int countOfCoffee = 3;
     private List<CoffeeComponent> components = new ArrayList<>();
-    private int countOfSugar = 0;
 
     public AmericanoCoffee() {
     }
@@ -53,16 +52,7 @@ public class AmericanoCoffee implements Coffee {
     }
 
     @Override
-    public int getSugar() {
-        return countOfSugar;
-    }
-
-    @Override
     public int getMilk() {
         return 0;
-    }
-
-    public void setSugar(int countOfSugar) {
-       this.countOfSugar = countOfSugar;
     }
 }

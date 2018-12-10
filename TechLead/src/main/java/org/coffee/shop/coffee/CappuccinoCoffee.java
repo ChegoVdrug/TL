@@ -13,8 +13,6 @@ public class CappuccinoCoffee implements Coffee {
     private static int countOfCoffee = 2;
     private int countOfMilk = 1;
     private List<CoffeeComponent> components = new ArrayList<>();
-    private int countOfSugar=0;
-
 
     public CappuccinoCoffee() {
     }
@@ -59,10 +57,4 @@ public class CappuccinoCoffee implements Coffee {
     }
 
 
-    public int getSugar() {
-        return countOfSugar;
-    }
-    public void setSugar(int countOfSugar){
-        this.countOfSugar=countOfSugar;
-    }
 }
