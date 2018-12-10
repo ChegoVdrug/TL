@@ -28,6 +28,12 @@ public class EspressoCoffee implements Coffee {
     public int getSugar() {
         return countOfSugar;
     }
+
+    @Override
+    public int getMilk() {
+        return 0;
+    }
+
     public EspressoCoffee (){
     }
 

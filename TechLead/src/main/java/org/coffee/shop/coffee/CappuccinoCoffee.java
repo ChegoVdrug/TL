@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CappuchinoCoffee implements Coffee {
+public class CappuccinoCoffee implements Coffee {
 
     private static int countOfWater = 1;
     private static int countOfCoffee = 2;
@@ -16,7 +16,7 @@ public class CappuchinoCoffee implements Coffee {
     private int countOfSugar=0;
 
 
-    public CappuchinoCoffee() {
+    public CappuccinoCoffee() {
     }
 
     @Override

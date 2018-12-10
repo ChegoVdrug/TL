@@ -13,5 +13,9 @@ public interface Coffee {
 
 
     int getSugar();
+
+    int getMilk();
+
+    void setSugar(int sugarCount);
 }
 

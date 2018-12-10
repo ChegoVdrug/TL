@@ -9,53 +9,37 @@ public class CoffeeMachine {
         switch (type) {
             case ESPRESSO:
                 EspressoCoffee espresso = new EspressoCoffee();
-
-                espresso.setSugar(sugarCount);
-
-                for (int i = 0; i < espresso.getWater(); i++) {
-                    espresso.addComponent(new Water());
-                }
-                for (int i = 0; i < espresso.getCoffee(); i++) {
-                    espresso.addComponent(new CofeComp());
-                }
-                for (int i = 0; i < espresso.getSugar(); i++) {
-                    espresso.addComponent(new Sugar());
-                }
+                createCofeBase(espresso,sugarCount);
                 return espresso;
 
             case CAPPUCCINO:
-                CappuchinoCoffee cappuchino = new CappuchinoCoffee();
-                cappuchino.setSugar(sugarCount);
-                for (int i = 0; i < cappuchino.getMilk(); i++){
-                    cappuchino.addComponent(new Milk());
-                }
-                for (int i = 0; i < cappuchino.getSugar(); i++) {
-                    cappuchino.addComponent(new Sugar());
-                }
-                for (int i = 0; i < cappuchino.getWater(); i++) {
-                    cappuchino.addComponent(new Water());
-                }
-                for (int i = 0; i < cappuchino.getCoffee(); i++) {
-                    cappuchino.addComponent(new CofeComp());
-                }
-                return cappuchino;
+                CappuccinoCoffee cappuccino = new CappuccinoCoffee();
+                createCofeBase(cappuccino,sugarCount);
+                return cappuccino;
 
             case AMERICANO:
                 AmericanoCoffee americano = new AmericanoCoffee();
-                americano.setSugar(sugarCount);
-                for (int i = 0; i < americano.getSugar(); i++) {
-                    americano.addComponent(new Sugar());
-                }
-                for (int i = 0; i < americano.getWater(); i++) {
-                    americano.addComponent(new Water());
-                }
-                for (int i = 0; i < americano.getCoffee(); i++) {
-                    americano.addComponent(new CofeComp());
-                }
+                createCofeBase(americano,sugarCount);
                 return americano;
 
             default:
                 return null;
+        }
+    }
+
+    private void createCofeBase(Coffee coffee, int countOfSugar) {
+        coffee.setSugar(countOfSugar);
+        for (int i = 0; i < coffee.getMilk(); i++){
+            coffee.addComponent(new Milk());
+        }
+        for (int i = 0; i < coffee.getSugar(); i++) {
+            coffee.addComponent(new Sugar());
+        }
+        for (int i = 0; i < coffee.getWater(); i++) {
+            coffee.addComponent(new Water());
+        }
+        for (int i = 0; i < coffee.getCoffee(); i++) {
+            coffee.addComponent(new CofeComp());
         }
     }
 }

@@ -57,6 +57,11 @@ public class AmericanoCoffee implements Coffee {
         return countOfSugar;
     }
 
+    @Override
+    public int getMilk() {
+        return 0;
+    }
+
     public void setSugar(int countOfSugar) {
        this.countOfSugar = countOfSugar;
     }
