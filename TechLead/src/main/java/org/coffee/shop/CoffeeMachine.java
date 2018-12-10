@@ -18,17 +18,18 @@ public class CoffeeMachine {
                 for (int i = 0; i < espresso.getCoffee(); i++) {
                     espresso.addComponent(new CofeComp());
                 }
-                for (int i = 0; i < sugarCount; i++) {
+                for (int i = 0; i < espresso.getSugar(); i++) {
                     espresso.addComponent(new Sugar());
                 }
                 return espresso;
 
             case CAPPUCCINO:
                 CappuchinoCoffee cappuchino = new CappuchinoCoffee();
+                cappuchino.setSugar(sugarCount);
                 for (int i = 0; i < cappuchino.getMilk(); i++){
                     cappuchino.addComponent(new Milk());
                 }
-                for (int i = 0; i < sugarCount; i++) {
+                for (int i = 0; i < cappuchino.getSugar(); i++) {
                     cappuchino.addComponent(new Sugar());
                 }
                 for (int i = 0; i < cappuchino.getWater(); i++) {
@@ -40,8 +41,9 @@ public class CoffeeMachine {
                 return cappuchino;
 
             case AMERICANO:
-                Coffee americano = new AmericanoCoffee();
-                for (int i = 0; i < sugarCount; i++) {
+                AmericanoCoffee americano = new AmericanoCoffee();
+                americano.setSugar(sugarCount);
+                for (int i = 0; i < americano.getSugar(); i++) {
                     americano.addComponent(new Sugar());
                 }
                 for (int i = 0; i < americano.getWater(); i++) {
