@@ -28,11 +28,11 @@ public class CoffeeMachine {
     }
 
     private void createCofeBase(Coffee coffee, int countOfSugar) {
-        coffee.setSugar(countOfSugar);
+
         for (int i = 0; i < coffee.getMilk(); i++){
             coffee.addComponent(new Milk());
         }
-        for (int i = 0; i < coffee.getSugar(); i++) {
+        for (int i = 0; i < countOfSugar; i++) {
             coffee.addComponent(new Sugar());
         }
         for (int i = 0; i < coffee.getWater(); i++) {
