@@ -28,7 +28,7 @@ public class AmericanoCoffee implements Coffee {
 
     @Override
     public void printComponents() {
-        System.out.println("Americano: {");  //мой вариант, в целом работает, но выводи криво, но надо довести до ума выведение только конечного количества, пока думаю
+        System.out.println("Americano: {");  //мой вариант, в целом работает, но выводит криво. надо довести до ума выведение только конечного количества, пока думаю
         String curName = "";
         String newName;
         int i = 0;

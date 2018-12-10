@@ -27,7 +27,6 @@ public class CappuchinoCoffee implements Coffee {
 
         for (int i = 1; i <= standartPartWater; i++) components.add(water);
         for (int i = 1; i <= standartCofeComp; i++) components.add(cofii);
-
     }
 
     @Override
@@ -38,7 +37,7 @@ public class CappuchinoCoffee implements Coffee {
     @Override
     public void printComponents() {
         System.out.println("Cappuchino: {");
-        Map<String, Integer> unicComponents = new HashMap<String, Integer>(); // вариант из интернета, разбираюсь
+        Map<String, Integer> unicComponents = new HashMap<String, Integer>(); // вариант из интернетов, разбираюсь
 
         for ( CoffeeComponent component: components ) {
             Integer oldCount = unicComponents.get(component.toString());
