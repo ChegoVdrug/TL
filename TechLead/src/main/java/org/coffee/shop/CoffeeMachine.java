@@ -8,26 +8,22 @@ public class CoffeeMachine {
     public Coffee prepareCoffee(CoffeType type, int sugarCount) {
         switch (type) {
             case ESPRESSO:
-                EspressoCoffee espresso = new EspressoCoffee();
-                createCofeBase(espresso,sugarCount);
-                return espresso;
+                return createCofeBase(new EspressoCoffee(),sugarCount);
 
             case CAPPUCCINO:
-                CappuccinoCoffee cappuccino = new CappuccinoCoffee();
-                createCofeBase(cappuccino,sugarCount);
-                return cappuccino;
+                return createCofeBase(new CappuccinoCoffee(),sugarCount);
 
             case AMERICANO:
-                AmericanoCoffee americano = new AmericanoCoffee();
-                createCofeBase(americano,sugarCount);
-                return americano;
+                return createCofeBase(new AmericanoCoffee(),sugarCount);
 
             default:
                 return null;
         }
     }
 
-    private void createCofeBase(Coffee coffee, int countOfSugar) {
+    private Coffee createCofeBase(Coffee coffee, int countOfSugar) {
+
+
 
         for (int i = 0; i < coffee.getMilk(); i++){
             coffee.addComponent(new Milk());
@@ -41,5 +37,7 @@ public class CoffeeMachine {
         for (int i = 0; i < coffee.getCoffee(); i++) {
             coffee.addComponent(new CofeComp());
         }
+
+        return coffee;
     }
 }
