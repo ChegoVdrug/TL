@@ -1,9 +1,9 @@
 package org.coffee.shop.coffee;
 
-import org.coffee.shop.components.CoffeeComponent;
+import org.coffee.shop.components.ComponentType;
 
 public interface Coffee {
-    void addComponent(CoffeeComponent component);
+    void addComponent(ComponentType component);
 
     void printComponents();
 
@@ -12,5 +12,9 @@ public interface Coffee {
     int getCoffee();
 
     int getMilk();
+
+    Integer getComponentCount(ComponentType componentType);
+
+    Integer getComponentCount(ComponentType componentType, CoffeType coffeType);
 }
 

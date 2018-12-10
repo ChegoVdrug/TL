@@ -2,6 +2,7 @@ package org.coffee.shop;
 
 import org.coffee.shop.coffee.CoffeType;
 import org.coffee.shop.coffee.Coffee;
+import org.coffee.shop.components.ComponentType;
 
 public class Application {
 
@@ -14,14 +15,21 @@ public class Application {
 
         Coffee espresso = machine1.prepareCoffee(CoffeType.ESPRESSO, 2);
         espresso.printComponents();
-        //Сделать и распечатать капучино
+        espresso.getComponentCount(ComponentType.MILK);
+        espresso.getComponentCount(ComponentType.SUGAR, CoffeType.ESPRESSO);
 
         Coffee cappuccino = machine1.prepareCoffee(CoffeType.CAPPUCCINO, 4);
         cappuccino.printComponents();
+        cappuccino.getComponentCount(ComponentType.MILK, CoffeType.CAPPUCCINO);
+        cappuccino.getComponentCount(ComponentType.COFFEE, CoffeType.CAPPUCCINO);
 
 
         Coffee americano = machine1.prepareCoffee(CoffeType.AMERICANO, 6);
         americano.printComponents();
+        americano.getComponentCount(ComponentType.COFFEE);
+        americano.getComponentCount(ComponentType.MILK, CoffeType.AMERICANO);
+
+
 
         Coffee cappuccino2 = machine2.prepareCoffee(CoffeType.CAPPUCCINO, 8);
         cappuccino2.printComponents();

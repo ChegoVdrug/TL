@@ -24,20 +24,20 @@ public class CoffeeMachine {
     private Coffee createCofeBase(Coffee coffee, int countOfSugar) {
 
 
-
         for (int i = 0; i < coffee.getMilk(); i++){
-            coffee.addComponent(new Milk());
+            coffee.addComponent(ComponentType.MILK);
         }
         for (int i = 0; i < countOfSugar; i++) {
-            coffee.addComponent(new Sugar());
+            coffee.addComponent(ComponentType.SUGAR);
         }
         for (int i = 0; i < coffee.getWater(); i++) {
-            coffee.addComponent(new Water());
+            coffee.addComponent(ComponentType.WATER);
         }
         for (int i = 0; i < coffee.getCoffee(); i++) {
-            coffee.addComponent(new CofeComp());
+            coffee.addComponent(ComponentType.COFFEE);
         }
 
         return coffee;
     }
+
 }
