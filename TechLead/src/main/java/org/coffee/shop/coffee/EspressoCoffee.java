@@ -42,7 +42,7 @@ public class EspressoCoffee implements Coffee {
     }
 
     @Override
-    public void printComponents() { //мой вариант распечатки состава намба ту
+    public void printComponents() { //мой вариант распечатки состава намба ту.
         System.out.println("Espresso: {");
 
         System.out.println("Coffee "+ getCoffee());
