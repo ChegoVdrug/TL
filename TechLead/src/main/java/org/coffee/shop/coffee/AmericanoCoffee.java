@@ -1,24 +1,19 @@
 package org.coffee.shop.coffee;
 
-import org.coffee.shop.components.CofeComp;
 import org.coffee.shop.components.CoffeeComponent;
-import org.coffee.shop.components.Water;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AmericanoCoffee implements Coffee {
 
+    private static int countOfWater = 5;
+    private static int countOfCoffee = 3;
     private List<CoffeeComponent> components = new ArrayList<>();
-    private CoffeeComponent water = new Water();
-    private CoffeeComponent cofii = new CofeComp();
-    private static int standartPartWater = 5;
-    private static int standartCofeComp = 3;
 
     public AmericanoCoffee() {
-
-        for (int i = 1; i <= standartPartWater; i++) components.add(water);
-        for (int i = 1; i <= standartCofeComp; i++) components.add(cofii);
     }
 
     @Override
@@ -28,25 +23,31 @@ public class AmericanoCoffee implements Coffee {
 
     @Override
     public void printComponents() {
-        System.out.println("Americano: {");  //мой вариант, в целом работает, но выводит криво. надо довести до ума выведение только конечного количества, пока думаю
-        String curName = "";
-        String newName;
-        int i = 0;
+        System.out.println("Americano: {");
+        Map<String, Integer> unicComponents = new HashMap<>();
+
         for (CoffeeComponent component : components) {
-            newName = component.toString();
+            Integer oldCount = unicComponents.get(component.toString());
+            if (oldCount == null) {
 
-            i++;
-            if (newName != curName) {
-                curName = newName;
-                newName = "";
-                System.out.println("\t" + component );
-                   i = 1;
+                oldCount = 0;
             }
-            else {System.out.println(i);}
-  //              i = 0;
+            unicComponents.put(component.toString(), oldCount + 1);
         }
-
+        System.out.println("Cofee " + unicComponents.get("Cava"));
+        System.out.println("Water " + unicComponents.get("Water"));
+        System.out.println("Sugar " + unicComponents.get("Sugar"));
+        System.out.println();
         System.out.println("}");
-        //Распечатать в виде: 2 сахара, 3 молока
+    }
+
+    @Override
+    public int getWater() {
+        return countOfWater;
+    }
+
+    @Override
+    public int getCoffee() {
+        return countOfCoffee;
     }
 }

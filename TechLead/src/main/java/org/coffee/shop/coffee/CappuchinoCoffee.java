@@ -1,8 +1,6 @@
 package org.coffee.shop.coffee;
 
-import org.coffee.shop.components.CofeComp;
 import org.coffee.shop.components.CoffeeComponent;
-import org.coffee.shop.components.Water;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,22 +9,11 @@ import java.util.Map;
 
 public class CappuchinoCoffee implements Coffee {
 
+    private static int countOfWater = 1;
+    private static int countOfCoffee = 2;
     private List<CoffeeComponent> components = new ArrayList<>();
-    private CoffeeComponent water = new Water();
-    private CoffeeComponent cofii = new CofeComp();
-    private static int standartPartWater = 1;
-    private static int standartCofeComp = 2;
-    static int countMilk = 1;
-
-    public void setCountMilk(int countMilk) {
-        CappuchinoCoffee.countMilk = countMilk;
-    }
-
 
     public CappuchinoCoffee() {
-
-        for (int i = 1; i <= standartPartWater; i++) components.add(water);
-        for (int i = 1; i <= standartCofeComp; i++) components.add(cofii);
     }
 
     @Override
@@ -37,11 +24,11 @@ public class CappuchinoCoffee implements Coffee {
     @Override
     public void printComponents() {
         System.out.println("Cappuchino: {");
-        Map<String, Integer> unicComponents = new HashMap<String, Integer>(); // вариант из интернетов, разбираюсь
+        Map<String, Integer> unicComponents = new HashMap<>();
 
-        for ( CoffeeComponent component: components ) {
+        for (CoffeeComponent component : components) {
             Integer oldCount = unicComponents.get(component.toString());
-            if ( oldCount == null ) {
+            if (oldCount == null) {
                 oldCount = 0;
             }
             unicComponents.put(component.toString(), oldCount + 1);
@@ -52,5 +39,15 @@ public class CappuchinoCoffee implements Coffee {
         System.out.println("Milk " + unicComponents.get("Milk"));
         System.out.println();
 
+    }
+
+    @Override
+    public int getWater() {
+        return countOfWater;
+    }
+
+    @Override
+    public int getCoffee() {
+        return countOfCoffee;
     }
 }

@@ -1,39 +1,29 @@
 package org.coffee.shop.coffee;
 
-import org.coffee.shop.CoffeeMachine;
-import org.coffee.shop.components.CofeComp;
 import org.coffee.shop.components.CoffeeComponent;
-import org.coffee.shop.components.Water;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class EspressoCoffee implements Coffee {
 
-    private List<CoffeeComponent> components = new ArrayList<>();
-    private CoffeeComponent water = new Water();
-    private CoffeeComponent cofii = new CofeComp();
-    private CoffeeComponent sugar = new CofeComp();
     private static int countOfWater = 1;
     private static int countOfCoffee = 2;
-    public int countOfSugar = 0;
+    private List<CoffeeComponent> components = new ArrayList<>();
 
+    public EspressoCoffee() {
+    }
+
+    @Override
     public int getWater() {
         return countOfWater;
     }
+
+    @Override
     public int getCoffee() {
         return countOfCoffee;
-    }
-    public int getSugar() {
-        return countOfSugar;
-    }
-    public void setSugar(int sugarCount) {
-        countOfSugar = sugarCount;
-    }
-    public EspressoCoffee (){
-        for (int i = 1; i <= countOfWater; i++) components.add(water);
-        for (int i = 1; i <= countOfCoffee; i++) components.add(cofii);
-        for (int i = 1; i <= countOfSugar; i++) components.add(sugar);
     }
 
     @Override
@@ -42,13 +32,21 @@ public class EspressoCoffee implements Coffee {
     }
 
     @Override
-    public void printComponents() { //мой вариант распечатки состава намба ту.
+    public void printComponents() {
         System.out.println("Espresso: {");
 
-        System.out.println("Coffee "+ getCoffee());
-        System.out.println("Water "+ getWater());
-        System.out.println("Sugar "+ getSugar());
-        System.out.println("}");
-        //Распечатать в виде: 2 сахара, 3 молока
+        Map<String, Integer> unicComponents = new HashMap<>();
+
+        for (CoffeeComponent component : components) {
+            Integer oldCount = unicComponents.get(component.toString());
+            if (oldCount == null) {
+                oldCount = 0;
+            }
+            unicComponents.put(component.toString(), oldCount + 1);
+        }
+        System.out.println("Cava " + unicComponents.get("Cava"));
+        System.out.println("Water " + unicComponents.get("Water"));
+        System.out.println("Sugar " + unicComponents.get("Sugar"));
+        System.out.println();
     }
 }
