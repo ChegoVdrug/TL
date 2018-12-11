@@ -1,15 +1,14 @@
 package org.coffee.shop.coffee;
 
-import Coffe.CofeeType;
 import org.coffee.shop.components.ComponentType;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CoffeeSuper {
+class CoffeeSuper {
 
-    void printAllComponentTypes(Map<ComponentType, Integer> unicComponents, CofeeType cofeeType) {
+    void printAllComponentTypes(Map<ComponentType, Integer> unicComponents, CoffeType cofeeType) {
         System.out.println(cofeeType + ": {");
         System.out.println("Cofee " + unicComponents.get(ComponentType.COFFEE));
         System.out.println("Water " + unicComponents.get(ComponentType.WATER));
@@ -18,7 +17,7 @@ public class CoffeeSuper {
         System.out.println("}");
     }
 
-    public Integer getComponentCountAllTypes(ComponentType componentType, CoffeType coffeType,List<ComponentType> components) {
+    Integer getComponentCountAllTypes(ComponentType componentType, CoffeType coffeType, List<ComponentType> components) {
         System.out.println(componentType  + " в " + coffeType.toString() + " = " + createReceiptMap(components).get(componentType));
         System.out.println();
         return createReceiptMap(components).get(componentType);
