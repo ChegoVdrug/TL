@@ -1,18 +1,15 @@
 package org.coffee.shop.coffee;
 
-import Coffe.CofeeType;
 import org.coffee.shop.components.ComponentType;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class AmericanoCoffee extends CoffeeSuper implements Coffee {
 
     private static int countOfWater = 5;
     private static int countOfCoffee = 3;
-    private List<ComponentType> components = new ArrayList<ComponentType>();
+    private List<ComponentType> components = new ArrayList<>();
 
 
     @Override
@@ -22,7 +19,7 @@ public class AmericanoCoffee extends CoffeeSuper implements Coffee {
 
     @Override
     public void printComponents() {
-        printAllComponentTypes(createReceiptMap(components), CofeeType.AMERICANO);
+        printAllComponentTypes(createReceiptMap(components), CoffeType.AMERICANO);
 
     }
     @Override
