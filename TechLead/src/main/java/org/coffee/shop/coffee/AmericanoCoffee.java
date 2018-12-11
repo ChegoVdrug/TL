@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class AmericanoCoffee implements Coffee {
+public class AmericanoCoffee extends CoffeeSuper implements Coffee {
 
     private static int countOfWater = 5;
     private static int countOfCoffee = 3;
@@ -17,7 +17,6 @@ public class AmericanoCoffee implements Coffee {
     }
 
     @Override
-
     public void addComponent(ComponentType component) {
         components.add(component);
     }
@@ -25,27 +24,9 @@ public class AmericanoCoffee implements Coffee {
     @Override
     public void printComponents() {
         System.out.println("Americano: {");
-        Map<ComponentType, Integer> unicComponents = createReceiptMap();
-        System.out.println("Cofee " + unicComponents.get(ComponentType.COFFEE));
-        System.out.println("Water " + unicComponents.get(ComponentType.WATER));
-        System.out.println("Sugar " + unicComponents.get(ComponentType.SUGAR));
-        System.out.println("}");
+        printAllComponentTypes(createReceiptMap(components));
+
     }
-
-    private Map<ComponentType, Integer> createReceiptMap() {
-        Map<ComponentType, Integer> unicComponents = new HashMap<>();
-
-        for (ComponentType component : components) {
-            Integer oldCount = unicComponents.get(component);
-            if (oldCount == null) {
-
-                oldCount = 0;
-            }
-            unicComponents.put(component, oldCount + 1);
-        }
-        return unicComponents;
-    }
-
     @Override
     public int getWater() {
         return countOfWater;
@@ -63,16 +44,16 @@ public class AmericanoCoffee implements Coffee {
 
     @Override
     public Integer getComponentCount(ComponentType componentType) {
-        Map<ComponentType, Integer> unicComponents = createReceiptMap();
-        System.out.println(componentType  + " = " + unicComponents.get(componentType));
+       // Map<ComponentType, Integer> unicComponents = createReceiptMap(components);
+        System.out.println(componentType  + " = " + createReceiptMap(components).get(componentType));
         System.out.println();
-        return unicComponents.get(componentType);
+        return createReceiptMap(components).get(componentType);
     }
 
     @Override
     public Integer getComponentCount(ComponentType componentType, CoffeType coffeType) {
-        System.out.println(componentType  + " в " + coffeType.toString() + " = " + createReceiptMap().get(componentType));
+        System.out.println(componentType  + " в " + coffeType.toString() + " = " + createReceiptMap(components).get(componentType));
         System.out.println();
-        return createReceiptMap().get(componentType);
+        return createReceiptMap(components).get(componentType);
     }
 }
