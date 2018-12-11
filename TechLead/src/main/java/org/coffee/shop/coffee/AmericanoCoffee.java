@@ -1,5 +1,6 @@
 package org.coffee.shop.coffee;
 
+import Coffe.CofeeType;
 import org.coffee.shop.components.ComponentType;
 
 import java.util.ArrayList;
@@ -13,8 +14,6 @@ public class AmericanoCoffee extends CoffeeSuper implements Coffee {
     private static int countOfCoffee = 3;
     private List<ComponentType> components = new ArrayList<ComponentType>();
 
-    public AmericanoCoffee() {
-    }
 
     @Override
     public void addComponent(ComponentType component) {
@@ -23,8 +22,7 @@ public class AmericanoCoffee extends CoffeeSuper implements Coffee {
 
     @Override
     public void printComponents() {
-        System.out.println("Americano: {");
-        printAllComponentTypes(createReceiptMap(components));
+        printAllComponentTypes(createReceiptMap(components), CofeeType.AMERICANO);
 
     }
     @Override
@@ -44,16 +42,8 @@ public class AmericanoCoffee extends CoffeeSuper implements Coffee {
 
     @Override
     public Integer getComponentCount(ComponentType componentType) {
-       // Map<ComponentType, Integer> unicComponents = createReceiptMap(components);
-        System.out.println(componentType  + " = " + createReceiptMap(components).get(componentType));
-        System.out.println();
-        return createReceiptMap(components).get(componentType);
+        return getComponentCountAllTypes(componentType, CoffeType.AMERICANO, components);
     }
 
-    @Override
-    public Integer getComponentCount(ComponentType componentType, CoffeType coffeType) {
-        System.out.println(componentType  + " в " + coffeType.toString() + " = " + createReceiptMap(components).get(componentType));
-        System.out.println();
-        return createReceiptMap(components).get(componentType);
-    }
+
 }

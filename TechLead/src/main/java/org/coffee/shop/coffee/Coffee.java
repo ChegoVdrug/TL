@@ -15,6 +15,6 @@ public interface Coffee {
 
     Integer getComponentCount(ComponentType componentType);
 
-    Integer getComponentCount(ComponentType componentType, CoffeType coffeType);
+//    Integer getComponentCount(ComponentType componentType, CoffeType coffeType);
 }
 

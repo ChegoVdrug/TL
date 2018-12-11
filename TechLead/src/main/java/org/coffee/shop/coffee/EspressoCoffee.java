@@ -35,12 +35,7 @@ public class EspressoCoffee implements Coffee {
         return createReceiptMap().get(componentType);
     }
 
-    public Integer getComponentCount(ComponentType componentType, CoffeType coffeType) {
-        // Map<ComponentType,Integer> unicComponents = createReceiptMap();
-        System.out.println(componentType  + " в " + coffeType.toString() + " = " + createReceiptMap().get(componentType));
-        System.out.println();
-        return createReceiptMap().get(componentType);
-    }
+
 
     public EspressoCoffee (){
     }

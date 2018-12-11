@@ -70,7 +70,6 @@ public class CappuccinoCoffee implements Coffee {
         return unicComponents.get(componentType);
     }
 
-    @Override
     public Integer getComponentCount(ComponentType componentType, CoffeType coffeType) {
         System.out.println(componentType  + " в " + coffeType.toString() + " = " + createReceiptMap().get(componentType));
         System.out.println();

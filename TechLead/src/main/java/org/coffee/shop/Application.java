@@ -16,18 +16,14 @@ public class Application {
         Coffee espresso = machine1.prepareCoffee(CoffeType.ESPRESSO, 2);
         espresso.printComponents();
         espresso.getComponentCount(ComponentType.MILK);
-        espresso.getComponentCount(ComponentType.SUGAR, CoffeType.ESPRESSO);
 
         Coffee cappuccino = machine1.prepareCoffee(CoffeType.CAPPUCCINO, 4);
         cappuccino.printComponents();
-        cappuccino.getComponentCount(ComponentType.MILK, CoffeType.CAPPUCCINO);
-        cappuccino.getComponentCount(ComponentType.COFFEE, CoffeType.CAPPUCCINO);
 
 
         Coffee americano = machine1.prepareCoffee(CoffeType.AMERICANO, 6);
         americano.printComponents();
         americano.getComponentCount(ComponentType.COFFEE);
-        americano.getComponentCount(ComponentType.MILK, CoffeType.AMERICANO);
 
 
 
