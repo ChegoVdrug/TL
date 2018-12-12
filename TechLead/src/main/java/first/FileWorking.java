@@ -1,27 +1,58 @@
 package first;
 //класс получает путь относительно коневого каталога, читает из конфига корневой каталог, возвращает запрашиваемый файл или поток
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
+
+import java.io.*;
 
 public class FileWorking {
 
-    public static void readFileFromServerRoot(String name) throws IOException {
+    public static boolean isFilePresent(String name, String dir) {
+        String path = dir + "/" + name;
+        System.out.println(path);
+        File file = new File(path);
+        System.out.println(path + " есть такой файл? " + file.exists());
+        return file.exists();
 
-        FileInputStream fileInputStream = new FileInputStream(Utils.getProperty("WEB_SERVER_ROOT") + "/" + name);
-        BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
+    }
+
+    public static String readLineFromFile(String name, int lineNum) throws IOException {
+
+        BufferedReader bufferedReader = null;
+        String result = null;
         try {
-            System.out.printf("File size: %d bytes \n", bufferedInputStream.available());
-
-            int i = -1;
-            while ((i = bufferedInputStream.read()) != -1) {
-
-                System.out.print((char) i);
-                System.out.printf(" ( код ASCII %d ) \n", i);
+            bufferedReader = new BufferedReader(new FileReader(Utils.getProperty("WEB_SERVER_ROOT") + "/" + name));
+            for (int i = 0; i < lineNum; i++) {
+                result = bufferedReader.readLine();
             }
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+            System.out.println("result " + result);
+
+        } finally {
+            bufferedReader.close();
         }
-        fileInputStream.close();
+        return result;
+    }
+
+    public static String getTextFromFileInRoot(String name) throws IOException {
+        String result = "";
+        FileInputStream fileInputStream = null;
+        BufferedInputStream bufferedInputStream;
+        if (isFilePresent(name, Utils.getProperty("WEB_SERVER_ROOT")) == true) {
+            try {
+                fileInputStream = new FileInputStream(Utils.getProperty("WEB_SERVER_ROOT") + "/" + name);
+                bufferedInputStream = new BufferedInputStream(fileInputStream);
+                int i;
+                System.out.printf("File size: %d bytes \n", bufferedInputStream.available());
+                while ((i = bufferedInputStream.read()) != -1) {
+                    result = result + ((char) i);
+                    System.out.print((char) i);
+                    System.out.printf(" ( код ASCII %d ) \n", i);
+                }
+            } finally {
+                if (fileInputStream != null)
+                    fileInputStream.close();
+            }
+        } else {
+            result = "Ошибка!Такого файла не существует.";
+        }
+        return result;
     }
 }
