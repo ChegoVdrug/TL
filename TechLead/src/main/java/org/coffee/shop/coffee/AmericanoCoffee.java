@@ -5,12 +5,15 @@ import org.coffee.shop.components.ComponentType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AmericanoCoffee extends CoffeeSuper implements Coffee {
+public class AmericanoCoffee extends AbstractCoffee implements Coffee {
 
     private static int countOfWater = 5;
     private static int countOfCoffee = 3;
     private List<ComponentType> components = new ArrayList<>();
 
+    public String toString() {
+        return "Americano";
+    }
 
     @Override
     public void addComponent(ComponentType component) {
