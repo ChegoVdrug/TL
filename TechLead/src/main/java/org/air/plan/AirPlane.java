@@ -23,9 +23,15 @@ class AirPlane {
         }
     }
 
-    void AddCarryable(Carryable carryable) throws Exception { //тоже про полиморфизм, instanceof
+    boolean addIsPossible(Carryable carryable) {
         if ((totalWeight + carryable.GetWeight()) <= 300) {
             totalWeight += carryable.GetWeight();
+            return true;
+        } else return false;
+    }
+
+    void AddCarryable(Carryable carryable) throws Exception { //тоже про полиморфизм, instanceof
+        if (addIsPossible(carryable)) {
             load.add(carryable);
             System.out.println("New carryable: " + carryable.toString());
 
