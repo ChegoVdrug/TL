@@ -2,38 +2,50 @@ package org.air.plan;
 
 import java.util.ArrayList;
 
+
 class AirPlane {
     private static int totalWeight = 0;
-    private ArrayList<Carryable> passengers = new ArrayList<>();
-    private ArrayList<Carryable> luggages = new ArrayList<>();
+    private ArrayList<Carryable> load = new ArrayList<>();
 
     void printPassengers() {
         System.out.println("\nPrint Passengers");
-        for (Carryable passenger : passengers) {
-            System.out.println(passenger.getName() + " " + passenger.getID());
+        for (Carryable aLoad : load) {
+            if (aLoad instanceof Passenger)
+                System.out.println(aLoad.toString());
         }
     }
 
     void printLuggage() {
-        System.out.println("\nPrint Luggages");
-        for (Carryable luggage : luggages) {
-            System.out.println(luggage.getID());
+        System.out.println("\nPrint Luggage");
+        for (Carryable aLoad : load) {
+            if (aLoad instanceof Luggage)
+                System.out.println(aLoad.toString());
         }
     }
 
-    void AddCarryable(Carryable carryable) {
+    void AddCarryable(Carryable carryable) throws Exception { //тоже про полиморфизм, instanceof
         if ((totalWeight + carryable.GetWeight()) <= 300) {
             totalWeight += carryable.GetWeight();
-            switch (carryable.getClass().getSimpleName()) {
-                case "Passenger":
+            load.add(carryable);
+            System.out.println("New carryable: " + carryable.toString());
+
+        } else System.out.println("Airplane Overloded. totalWeight " + totalWeight);
+    }
+
+ /*
+    void AddCarryable(Carryable carryable) throws Exception { //тоже про полиморфизм, instanceOf
+        if ((totalWeight + carryable.GetWeight()) <= 300) {
+            totalWeight += carryable.GetWeight();
+
+                if (carryable instanceof Passenger){ //   switch (carryable.getClass().getSimpleName()) {
                     System.out.println("Новый пассажир " + carryable.getName() + " ID_" + carryable.getID());
                     passengers.add(carryable);
-                    break;
-                case "Luggage":
-                    luggages.add((new Luggage()));
+                }
+               else if (carryable instanceof Luggage)
+                {  luggages.add((new Luggage()));
                     System.out.println("Luggage added.ID_" + carryable.getID());
-                    break;
             }
         } else System.out.println("Airplane Overloded. totalWeight " + totalWeight);
     }
+    */
 }

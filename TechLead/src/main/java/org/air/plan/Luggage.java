@@ -11,4 +11,10 @@ class Luggage extends Carryable{
     int GetWeight() {
         return weight;
     }
+
+    public String toString() {
+        return "{bag: " +
+                "ID='" + getID() + '\'' +
+                '}';
+    }
 }

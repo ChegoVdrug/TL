@@ -21,4 +21,13 @@ public class Passenger extends Carryable {
     int GetWeight() {
         return weight;
     }
+
+    public String toString() {
+        return "{Person: " +
+                "name='" + getName() + '\'' +
+                " ID='" + getID() + '\'' +
+                '}';
+    }
+
+
 }

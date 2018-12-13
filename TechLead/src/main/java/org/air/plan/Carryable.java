@@ -20,6 +20,9 @@ public abstract class Carryable {
         Random random = new Random();
         ID = random.nextInt(1000);
     }
-
+    @Override
+    public String toString() {
+        return null;
+           }
 
 }
