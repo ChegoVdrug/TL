@@ -1,13 +1,20 @@
 package org.command.execute;
 
-import java.util.ArrayList;
+import java.util.ArrayList; // enum не нужен, в лист добавляем сразу команды
 
-public class Macro {
-    ArrayList<Commands> commandChain = new ArrayList<>();
+class Macro {
+    private ArrayList<Command> commandChain = new ArrayList<>();
 
-    void add(Commands cmd){
+    void add(Command cmd){
         commandChain.add(cmd);
     }
+
+    void run(){
+        for (Command command : commandChain) {
+            command.execute();
+        }
+    }
+   /*
     void run(){
         for(int i = 0; i <commandChain.size(); i++) {
    //         System.out.println(commandChain.get(0));
@@ -31,4 +38,5 @@ public class Macro {
 
         }
     }
+    */
 }
