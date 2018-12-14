@@ -17,8 +17,7 @@ public abstract class Carryable {
     }
 
     void setID() {
-        Random random = new Random();
-        ID = random.nextInt(1000);
+        ID = new Random().nextInt(1000);
     }
     @Override
     public String toString() {
