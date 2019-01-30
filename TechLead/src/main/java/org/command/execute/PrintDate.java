@@ -3,8 +3,10 @@ package org.command.execute;
 import java.util.Date;
 
 public class PrintDate implements  Command{
+    static String date;
     @Override
     public void execute() {
-        System.out.println(new Date().toString());
+        date = new Date().toString();
+        System.out.println(date);
     }
 }

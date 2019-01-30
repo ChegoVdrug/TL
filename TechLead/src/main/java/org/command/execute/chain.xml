@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<macro>
+    <commands>
+        <command>
+            <type>PrintHello</type>
+            <text>Hello</text>
+        </command>
+        <command>
+            <type>PrintNumber</type>
+            <text>12</text>
+        </command>
+        <command>
+            <type>PrintDate</type>
+            <text>12/10/2018</text>
+        </command>
+        <command>
+            <type>PrintHello</type>
+            <text>hgjgjhgjg</text>
+        </command>
+    </commands>
+</macro>
